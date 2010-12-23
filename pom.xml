@@ -171,7 +171,7 @@
             <ruleset>/rulesets/basic.xml</ruleset>
           </rulesets-->
           <format>xml</format>
-          <linkXref>true</linkXref>
+          <linkXRef>true</linkXRef>
           <sourceEncoding>${project.reporting.outputEncoding}</sourceEncoding>
           <minimumTokens>100</minimumTokens>
         </configuration>
