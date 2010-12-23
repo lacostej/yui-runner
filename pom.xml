@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.coffeebreaks.yui</groupId>
@@ -28,7 +29,7 @@
   </properties>
 
   <developers>
-   <developer>
+    <developer>
       <id>lacostej</id>
       <name>Jerome Lacoste</name>
       <email>jerome.lacoste@gmail.com</email>
@@ -91,7 +92,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-         <version>2.7</version>
+          <version>2.7</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -109,7 +110,8 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <message>Please make sure you use maven version 2.2.1 or later. Other versions are not supported.</message>
+                  <message>Please make sure you use maven version 2.2.1 or later. Other versions are not supported.
+                  </message>
                   <version>[2.2.1,)</version>
                 </requireMavenVersion>
                 <!--requireJavaVersion>
@@ -123,8 +125,8 @@
       </plugin>
 
       <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>cobertura-maven-plugin</artifactId>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
@@ -194,13 +196,13 @@
     <module>yui-runner-example</module>
   </modules>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>scala-tools.releases</id>
-            <name>Scala-Tools Plugins Repository for Releases</name>
-            <url>http://scala-tools.org/repo-releases</url>
-        </pluginRepository>
-    </pluginRepositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>scala-tools.releases</id>
+      <name>Scala-Tools Plugins Repository for Releases</name>
+      <url>http://scala-tools.org/repo-releases</url>
+    </pluginRepository>
+  </pluginRepositories>
 
   <!--distributionManagement>
   </distributionManagement-->
