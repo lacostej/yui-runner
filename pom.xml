@@ -191,6 +191,7 @@
   <modules>
     <module>yui-collector</module>
     <module>yui-runner</module>
+    <module>yui-runner-example</module>
   </modules>
 
     <pluginRepositories>

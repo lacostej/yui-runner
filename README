@@ -1,0 +1,27 @@
+A YUI runner for JUnit.
+
+Infrastructure for running browser specific tests using selenium in a deployed browser. Can also be used to easily debug server side tests from your editor.
+
+See the yui-runner-example project for a complete setup.
+
+YUITests infrastructure
+* a YUI2Test class uses a special JUnit runner
+  The class sets the environment up by itself (starts and stops jetty).
+  The runner will use selenium (webdriver) and load all single HTML pages.
+  Those pages are self-testable, meaning that they will trigger the running of the test suite and report the results back to the application
+* the test runner retrieves the collected reports and manages them properly
+
+
+Some limitations
+* the code is written in Scala. Might be better to rewrite it in Java to ease adoption by other projects
+* the API could probably be improved.
+* one might want to use a different paradigm (i.e. non self tested HTML pages) for running the tests
+* note aggregation of the saved YUI reports under target/surefire-reports by hudson is untested... FIXME
+
+Some advantages
+* self-contained
+* works the same from your editor (eclipse, Intellij) or maven or hudson
+* should benefit from the surefire reporting capabilities in maven (and hudson)
+
+Feedback to jerome.lacoste@gmail.com
+

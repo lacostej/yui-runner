@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app
+PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+"http://java.sun.com/dtd/web-app_2_2.dtd">
+
+<web-app>
+  <servlet>
+    <servlet-name>YUIReportCollector</servlet-name>
+    <servlet-class>org.coffeebreaks.yui.YUIReportCollector</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>YUIReportCollector</servlet-name>
+    <url-pattern>/tests/yui-report-collector</url-pattern>
+   </servlet-mapping>
+
+  <!--servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/css/*</url-pattern>
+    <url-pattern>/js/*</url-pattern>
+  </servlet-mapping-->
+
+</web-app>
