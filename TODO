@@ -1,0 +1,8 @@
+* consider rewriting the collector code in Java to remove the dependence upon scala ? might be better for reuse. For tests we still consider a dependency on scala acceptable
+* change the API so that a Test is mapped to a URL not a File
+* allow people to disable / enable listeners on the collector and on the runner
+* show how to run multi browser tests
+* support HtmlUnit in default example
+* verify if surefire-reports saving integration works as expected
+* make code multi-threaded (reports collector)
+* fix reporting
