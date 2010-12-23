@@ -1,3 +1,5 @@
+* FIX firefox execution in Webdriver. Right now Y.Test isn't recognized, yet it works when running Firefox manually
+* add more unit tests
 * use proper logging
 * consider rewriting the collector code in Java to remove the dependence upon scala ? might be better for reuse. For tests we still consider a dependency on scala acceptable
 * change the API so that a Test is mapped to a URL not a File

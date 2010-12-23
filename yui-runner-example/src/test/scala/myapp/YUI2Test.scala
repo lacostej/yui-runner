@@ -9,6 +9,9 @@ import java.lang.{String}
 import org.coffeebreaks.yui.{YUIJunitTestRunner, YUITest}
 import org.openqa.selenium.htmlunit.HtmlUnitDriver
 
+import utils.JettyUtils
+import org.openqa.selenium.firefox.FirefoxDriver
+
 /**
  * Sample class for running all YUI tests.
  *
@@ -33,18 +36,20 @@ object YUI2Test {
   var driver : WebDriver = createDriver
 
   def webUrlRoot = {
-    NB.Utils.JettyUtils.getBaseUrl
+    JettyUtils.getBaseUrl
   }
 
   def createDriver : WebDriver = {
-    // new FirefoxDriver() // FIXME
+    new FirefoxDriver() // FIXME
+    /*
     val driver : HtmlUnitDriver = new HtmlUnitDriver;
     driver.setJavascriptEnabled(true)
     driver
+    */
   }
 
   @BeforeClass def startServer() = {
-    val port: Int = 0 // means random
+    val port: Int = 8080 // means random
     JettyUtils.startServer(port, WEBAPP_STATIC_ROOT_DIR)
     println("Started jetty server on: " + webUrlRoot)
   }

@@ -9,7 +9,7 @@ import org.apache.commons.io.{IOUtils, FileUtils}
 import org.apache.commons.io.filefilter.{FileFilterUtils}
 import org.junit.runners.{ParentRunner}
 import org.junit.runner.{Result, Description}
-import org.junit.runner.notification.{Failure, RunNotifier}
+import org.junit.runner.notification.{Failure => JUnitFailure, RunNotifier}
 import org.openqa.selenium.{By, WebDriver}
 import org.openqa.selenium.support.ui.{TimeoutException, WebDriverWait, ExpectedCondition}
 
@@ -60,7 +60,7 @@ class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest
       reports = Some(runYUITest(child))
     } catch {
       case t: Throwable => {
-        notifier.fireTestFailure(new Failure(description, t))
+        notifier.fireTestFailure(new JUnitFailure(description, t))
       }
     }
     finally {
@@ -69,7 +69,7 @@ class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest
       } else {
         val yuiReports: YUIReports = reports.get
         if (yuiReports.countFailures() > 0) {
-          notifier.fireTestFailure(new Failure(description, new Throwable("test failed. Check the logs")))
+          notifier.fireTestFailure(new JUnitFailure(description, new Throwable("test failed. Check the logs")))
         } else if (yuiReports.countTests() == 0) {
           notifier.fireTestIgnored(description)
         } else {

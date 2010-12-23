@@ -9,22 +9,18 @@ AppTestPage = function(page) {
       YUI().use('test', function(Y) {
 
         function handleRunnerStart(data){
-          alert("HA");
-          $("body").append("<div id=\"yui-reporter-running\"></div>")
+          $("body").append("<div id=\"yui-reporter-running\" style=\"visibility: hidden;\"></div>")
         }
         function handleRunnerComplete(data){
           var results = Y.Test.Runner.getResults(),
               reporter = new Y.Test.Reporter("/tests/yui-report-collector", Y.Test.Format.JUnitXML);
 
           reporter.report(results);
-          $("body").append("<div id=\"yui-reporter-ran\">test-results published</div>")
-
-          alert("HO");
+          $("body").append("<div id=\"yui-reporter-ran\" style=\"visibility: hidden\">test-results published</div>")
         }
         function registerYUICollectorEvents() {
           Y.Test.Runner.subscribe(Y.Test.Runner.BEGIN_EVENT, handleRunnerStart);
           Y.Test.Runner.subscribe(Y.Test.Runner.COMPLETE_EVENT, handleRunnerComplete);
-          alert("HU");
         }
 
         registerYUICollectorEvents();
@@ -32,7 +28,6 @@ AppTestPage = function(page) {
         $.getScript('scripts/tests/test-' + page +'.js', function() {
           Y.Test.Runner.add(oSuite);
           Y.Test.Runner.run();
-          alert("RUNNING")
         });
       });
     });
