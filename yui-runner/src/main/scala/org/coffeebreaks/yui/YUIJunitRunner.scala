@@ -130,12 +130,13 @@ class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest
     var url : URL = pageToUrl(test, file)
     println("path: " + file.getAbsoluteFile)
     println("page: " + url)
+    // if reports aren't empty here, we have a problem. We should at least warn
+    YUIReportCollector.clear
     driver.get(url.toString)
-    NB.tests.YUIReportCollector.clear
     if (hasYUITests(driver)) {
       waitForYUITestsToRun(driver, 20)
     }
-    NB.tests.YUIReportCollector.getYUIReports
+    YUIReportCollector.getYUIReports
   }
 
   def exists(driver: WebDriver, condition: ExpectedCondition[Boolean]): Boolean = {
