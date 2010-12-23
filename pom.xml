@@ -19,6 +19,27 @@
     <url>http://deesse.bbc.no/jira/browse/FIXME</url>
   </issueManagement-->
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+
+    <scala.version>2.8.1</scala.version>
+    <maven-scala-plugin-version>2.14</maven-scala-plugin-version>
+  </properties>
+
+  <developers>
+   <developer>
+      <id>lacostej</id>
+      <name>Jerome Lacoste</name>
+      <email>jerome.lacoste@gmail.com</email>
+      <organization>CoffeeBreaks</organization>
+      <organizationUrl>http://www.coffeebreaks.org</organizationUrl>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
+
   <dependencyManagement>
     <dependencies>
       <!-- internal dependencies -->
@@ -61,6 +82,16 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.scala-tools</groupId>
+          <artifactId>maven-scala-plugin</artifactId>
+          <version>${maven-scala-plugin-version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+         <version>2.7</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -141,7 +172,7 @@
           </rulesets-->
           <format>xml</format>
           <linkXref>true</linkXref>
-          <sourceEncoding>utf-8</sourceEncoding>
+          <sourceEncoding>${project.reporting.outputEncoding}</sourceEncoding>
           <minimumTokens>100</minimumTokens>
         </configuration>
       </plugin>
@@ -161,6 +192,14 @@
     <module>yui-collector</module>
     <module>yui-runner</module>
   </modules>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>scala-tools.releases</id>
+            <name>Scala-Tools Plugins Repository for Releases</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
 
   <!--distributionManagement>
   </distributionManagement-->
