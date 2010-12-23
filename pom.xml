@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.coffeebreaks.yui</groupId>
+  <artifactId>yui-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>0.1-SNAPSHOT</version>
+  <name>YUI Runner Parent</name>
+  <inceptionYear>2010</inceptionYear>
+
+  <!--scm>
+    <connection>scm:git:git@gitorious.si.notrebanque.fr:notrebanque/notrebanque.git</connection>
+    <developerConnection>scm:svn:svn+ssh://deesse.bbc.no/opt/svn-repository/keytouch/trunk/keytouch</developerConnection>
+    <url>http://deesse.bbc.no/viewcvs/viewvc.cgi/?root=keytouch</url>
+  </scm-->
+
+  <!--issueManagement>
+    <url>http://deesse.bbc.no/jira/browse/FIXME</url>
+  </issueManagement-->
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- internal dependencies -->
+      <dependency>
+        <groupId>org.coffeebreaks.yui</groupId>
+        <artifactId>yui-collector</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.coffeebreaks.yui</groupId>
+        <artifactId>yui-runner</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.8.2</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.4</version>
+          <configuration>
+            <formats>
+              <format>xml</format>
+            </formats>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>site</phase>
+              <goals>
+                <goal>cobertura</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.0-alpha-4</version>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <message>Please make sure you use maven version 2.2.1 or later. Other versions are not supported.</message>
+                  <version>[2.2.1,)</version>
+                </requireMavenVersion>
+                <!--requireJavaVersion>
+                  <message>Please make sure you use a supported JDK</message>- -&gt;
+                  <version>[1.6.0,1.7)</version>
+                </requireJavaVersion-->
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <!--checkoutDirectoryName>project</checkoutDirectoryName-->
+          <!-- See http://jira.codehaus.org/browse/MPIR-147 --> <!-- FIXME review -->
+          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+          <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.7</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.1</version>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.7</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.4</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <targetJdk>1.5</targetJdk>
+          <!--rulesets>
+            <ruleset>/rulesets/basic.xml</ruleset>
+          </rulesets-->
+          <format>xml</format>
+          <linkXref>true</linkXref>
+          <sourceEncoding>utf-8</sourceEncoding>
+          <minimumTokens>100</minimumTokens>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-changelog-plugin</artifactId>
+        <version>2.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+        <version>2.3</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <modules>
+    <module>yui-collector</module>
+    <module>yui-runner</module>
+  </modules>
+
+  <!--distributionManagement>
+  </distributionManagement-->
+</project>
