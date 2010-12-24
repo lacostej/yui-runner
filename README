@@ -1,16 +1,20 @@
-A YUI runner for JUnit.
+YUI runner is a small framework to automate the running of Yahoo! UI tests, and collect their results.
 
-Infrastructure for running browser specific tests using selenium in a deployed browser. Can also be used to easily debug server side tests from your editor.
+It for example allows to run browser specific JS tests using e.g. selenium in a deployed browser.
+It can also be used to easily debug server side tests from your development environment, or even in production environments.
 
 See the yui-runner-example project for a complete setup.
 
-YUITests infrastructure
-* a YUI2Test class uses a special JUnit runner
-  The class sets the environment up by itself (starts and stops jetty).
-  The runner will use selenium (webdriver) and load all single HTML pages.
-  Those pages are self-testable, meaning that they will trigger the running of the test suite and report the results back to the application
-* the test runner retrieves the collected reports and manages them properly
+The framework provides:
+* a special JUnit runner (YUIJunitTestRunner) which one attaches to a subclass of its companion class (YUITest)
+* a report collector servlet which collects reports published by the YUI test report publishing code
 
+As a developer your job consists of writing a subclass of the YUITest class and make it
+ * find the URLs of the tests to run
+ * set the environment up for running the tests (e.g. starts and stops jetty if necessary)
+ * prepare the browser and load the pages (e.g. with selenium)
+
+An example project shows how to combine maven, jetty, selenium and firefox to automate the running of tests embedded in HTML pages.
 
 Some limitations
 * the code is written in Scala. Might be better to rewrite it in Java to ease adoption by other projects
@@ -24,4 +28,3 @@ Some advantages
 * should benefit from the surefire reporting capabilities in maven (and hudson)
 
 Feedback to jerome.lacoste@gmail.com
-
