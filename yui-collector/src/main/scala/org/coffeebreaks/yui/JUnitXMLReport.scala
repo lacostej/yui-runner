@@ -8,7 +8,6 @@ import java.lang.String
  * @author jerome@coffeebreaks.org
  * @since  12/22/10 9:23 AM
  */
-
 class JUnitXMLReport(xml: String) {
   val suites: List[TestSuite] = JUnitXMLReport.parseReport(xml)
 
