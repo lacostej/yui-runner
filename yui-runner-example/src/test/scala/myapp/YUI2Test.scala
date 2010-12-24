@@ -49,7 +49,7 @@ object YUI2Test {
   }
 
   @BeforeClass def startServer() = {
-    val port: Int = 8080 // means random
+    val port: Int = 0 // means random
     JettyUtils.startServer(port, WEBAPP_STATIC_ROOT_DIR)
     println("Started jetty server on: " + webUrlRoot)
   }
