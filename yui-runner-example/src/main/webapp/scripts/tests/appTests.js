@@ -6,7 +6,8 @@
 
 AppTestPage = function(page) {
     $.getScript("scripts/tests/yui-min.js", function () {
-      YUI().use('test', function(Y) {
+      Y = YUI()
+      Y.use('test', function(Y) {
 
         function handleRunnerStart(data){
           $("body").append("<div id=\"yui-reporter-running\" style=\"visibility: hidden;\"></div>")
