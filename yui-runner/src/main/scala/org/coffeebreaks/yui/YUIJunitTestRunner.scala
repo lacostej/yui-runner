@@ -134,7 +134,7 @@ class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest
     YUIReportCollector.clear
     driver.get(url.toString)
     if (hasYUITests(driver)) {
-      waitForYUITestsToRun(driver, 20)
+      waitForYUITestsToRun(driver, 60)
     }
     YUIReportCollector.getYUIReports
   }
