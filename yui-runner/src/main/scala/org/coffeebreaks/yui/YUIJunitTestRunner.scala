@@ -158,7 +158,7 @@ class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest
       new WebDriverWait(driver, timeInSeconds).until(new VisibilityOfElementLocated(By.id("yui-reporter-ran")))
     } catch {
       case e: TimeoutException => {
-        println("ERROR: Results aren't yet published after 10 seconds")
+        println("ERROR: Results aren't yet published after " + timeInSeconds + " seconds")
       }
     }
   }
