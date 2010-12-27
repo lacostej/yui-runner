@@ -18,7 +18,7 @@ An example project shows how to combine maven, jetty, selenium and firefox to au
 
 Some limitations
 * the code is written in Scala. Might be better to rewrite it in Java to ease adoption by other projects
-* the API could probably be improved.
+* the API could probably be improved. Work has started on that, so don't expect the API to be stable in between minor versions before 1.0
 * one might want to use a different paradigm (i.e. non self tested HTML pages) for running the tests
 * note aggregation of the saved YUI reports under target/surefire-reports by hudson is untested... FIXME
 
