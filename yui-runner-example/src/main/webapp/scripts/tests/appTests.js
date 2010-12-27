@@ -16,7 +16,12 @@ AppTestPage = function(page) {
           var results = Y.Test.Runner.getResults(),
               reporter = new Y.Test.Reporter("/tests/yui-report-collector", Y.Test.Format.JUnitXML);
 
+          // note as of YUI 3.2.0, there's no way you can know if the reporting failed (e.g. due to a URL
+          // misconfiguration) as the report function doesn't use ajax and doesn't capture the response in
+          // the iframe. This sucks...
           reporter.report(results);
+
+          reporter.destroy();
           $("body").append("<div id=\"yui-reporter-ran\" style=\"visibility: hidden\">test-results published</div>")
         }
         function registerYUICollectorEvents() {

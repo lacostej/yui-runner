@@ -1,3 +1,4 @@
+* move the example as an integration-test with maven so that failing the junit tests because the expectation and doesn't fail the build
 * add more unit tests
 * use proper logging - find a way to collect console logs as well !
 * consider rewriting the collector code in Java to remove the dependence upon scala ? might be better for reuse. For tests we still consider a dependency on scala acceptable
