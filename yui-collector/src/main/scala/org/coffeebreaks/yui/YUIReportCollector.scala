@@ -55,7 +55,7 @@ class YUIReports {
   def getYUIReports: List[YUIReport] = {
     reports
   }
-  def clear {
+  def clear = {
     reports = Nil
   }
 
@@ -82,7 +82,7 @@ object YUIReportCollector  {
     reports.addYUIReport(report)
   }
 
-  def clear {
+  def clear = {
     reports.clear
   }
 
