@@ -10,15 +10,15 @@
   <name>YUI Runner Parent</name>
   <inceptionYear>2010</inceptionYear>
 
-  <!--scm>
-    <connection>scm:git:git@gitorious.si.notrebanque.fr:notrebanque/notrebanque.git</connection>
-    <developerConnection>scm:svn:svn+ssh://deesse.bbc.no/opt/svn-repository/keytouch/trunk/keytouch</developerConnection>
-    <url>http://deesse.bbc.no/viewcvs/viewvc.cgi/?root=keytouch</url>
-  </scm-->
+  <scm>
+    <connection>scm:git:git@github.com:lacostej/yui-runner.git</connection>
+    <developerConnection>scm:git:git@github.com:lacostej/yui-runner.git</developerConnection>
+    <url>git@github.com:lacostej/yui-runner.git</url>
+  </scm>
 
-  <!--issueManagement>
-    <url>http://deesse.bbc.no/jira/browse/FIXME</url>
-  </issueManagement-->
+  <issueManagement>
+    <url>https://github.com/lacostej/yui-runner/issues</url>
+  </issueManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
