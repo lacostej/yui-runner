@@ -10,6 +10,18 @@
   <name>YUI Runner Parent</name>
   <inceptionYear>2010</inceptionYear>
 
+  <description>YUI runner is a small framework to automate the running of Yahoo! UI tests, and collect their results.</description>
+  
+  <url>https://github.com/lacostej/yui-runner/</url>
+
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://github.com/lacostej/yui-runner/raw/master/LICENSE.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
   <scm>
     <connection>scm:git:git@github.com:lacostej/yui-runner.git</connection>
     <developerConnection>scm:git:git@github.com:lacostej/yui-runner.git</developerConnection>
