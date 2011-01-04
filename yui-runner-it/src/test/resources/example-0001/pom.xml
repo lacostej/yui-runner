@@ -6,10 +6,10 @@
     <groupId>org.coffeebreaks.yui</groupId>
     <artifactId>yui-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
+    <relativePath>../../../../pom.xml</relativePath>
   </parent>
-  <artifactId>yui-runner-example</artifactId>
-  <name>YUI Runner :: Runner Example</name>
+  <artifactId>yui-runner-example-0001</artifactId>
+  <name>YUI Runner :: Runner Example 0001</name>
   <packaging>war</packaging>
   <description>A sample WAR project that exercices the full runner</description>
 
