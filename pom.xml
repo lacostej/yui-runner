@@ -216,7 +216,7 @@
   <modules>
     <module>yui-collector</module>
     <module>yui-runner</module>
-    <!--module>yui-runner-example</module-->
+    <module>yui-runner-it</module>
   </modules>
 
   <!--pluginRepositories>
