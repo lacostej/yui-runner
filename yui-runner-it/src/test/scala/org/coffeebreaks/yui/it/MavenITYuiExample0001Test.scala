@@ -9,8 +9,8 @@ import org.apache.maven.it.util.ResourceExtractor
 class MavenITYuiExample0001Test {
   @Test def testSurefireWrapping() = {
     val testDir: File = ResourceExtractor.simpleExtractResources( getClass(), "/example-0001" )
-    val verifier: Verifier = new Verifier(testDir.getAbsolutePath)
-
+    val verifier: Verifier = new Verifier(testDir.getAbsolutePath, null, true)
+    
     verifier.displayStreamBuffers
 
     /*val cliOptions: List = [ "-N" ]
