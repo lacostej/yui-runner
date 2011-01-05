@@ -11,7 +11,7 @@
   <name>YUI Runner :: Runner</name>
   <dependencies>
     <dependency>
-      <groupId>org.coffeebreaks.yui</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>yui-collector</artifactId>
     </dependency>
 
