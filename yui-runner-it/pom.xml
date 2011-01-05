@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.coffeebreaks.yui</groupId>
     <artifactId>yui-parent</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>yui-runner-it</artifactId>
