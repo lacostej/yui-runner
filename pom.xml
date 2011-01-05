@@ -167,8 +167,12 @@
           <useAgent>true</useAgent>
         </configuration>
       </plugin>
-      
-      <plugin>
+
+      <!-- Enabling this caused problems when building from scratch. Not sure why but it confused the reactor -->
+      <!-- up to the point it wasn't finding the internal dependencies anymore -->
+      <!-- Probably a bug in maven.  (2.2.1 and 3.0.1)-->
+      <!-- As this is present in the OSS sonatype release profile, enable it with -Psonatype-oss-release (as of version 5) -->
+      <!--plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <executions>
@@ -179,7 +183,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin-->
     </plugins>
   </build>
 
@@ -214,7 +218,7 @@
         <artifactId>cobertura-maven-plugin</artifactId>
         <version>2.4</version>
       </plugin>
-
+      
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
