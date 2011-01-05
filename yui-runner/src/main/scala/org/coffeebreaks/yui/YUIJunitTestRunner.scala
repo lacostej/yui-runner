@@ -5,8 +5,7 @@ import java.lang.{String}
 import java.lang.reflect.Constructor
 import java.net.URL
 import scala.collection.JavaConversions._
-import org.apache.commons.io.{IOUtils, FileUtils}
-import org.apache.commons.io.filefilter.{FileFilterUtils}
+import org.apache.commons.io.IOUtils
 import org.junit.runners.{ParentRunner}
 import org.junit.runner.{Result, Description}
 import org.junit.runner.notification.{Failure => JUnitFailure, RunNotifier}
@@ -18,14 +17,16 @@ import org.openqa.selenium.support.ui.{TimeoutException, WebDriverWait, Expected
  * @author jerome@coffeebreaks.org
  * @since  12/20/10 5:07 PM
  */
+/**
+ * Parent should have a constructor
+ */
 trait YUITestIF {
-  def getFile : File
+  def getUrl : URL
   def getDriver : WebDriver
-  def webUrlRoot : String
 }
 
-abstract class YUITest(val file: File) extends YUITestIF {
-  def getFile : File = file
+abstract class YUITest(val url: URL) extends YUITestIF {
+  def getUrl : URL = url
 }
 
 class VisibilityOfElementLocated(by: By) extends ExpectedCondition[Boolean] {
@@ -36,21 +37,6 @@ class VisibilityOfElementLocated(by: By) extends ExpectedCondition[Boolean] {
 }
 
 class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest](testClass) {
-  val DEFAULT_WEBAPP_STATIC_ROOT_DIR: String = "src/main/webapp"
-  val DEFAULT_YUI_TESTS_ROOT_DIR: String = DEFAULT_WEBAPP_STATIC_ROOT_DIR
-
-  val yuiDir: File = new File(DEFAULT_YUI_TESTS_ROOT_DIR) // FIXME parametrize (annotation)
-  val files = FileFilterUtils.filterSet(
-      FileFilterUtils.suffixFileFilter(".html"),
-      FileUtils.listFiles(yuiDir, Array("html"), true)
-     );  // FIXME parametrize (annotation)
-
-  def webappStaticRootDir = DEFAULT_WEBAPP_STATIC_ROOT_DIR
-
-  def pageToUrl(test: YUITest, f: File) : URL = {
-    var i : Int = f.getAbsolutePath.indexOf(webappStaticRootDir)
-    new URL(test.webUrlRoot + f.getAbsolutePath.substring(i + webappStaticRootDir.length))
-  }
 
   def runChild(child: YUITest, notifier: RunNotifier) = {
     val description: Description = describeChild(child)
@@ -80,14 +66,23 @@ class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest
     }
   }
 
+  def getSimpleName(url: URL) : String = {
+    var result = url.getPath
+    if (result.startsWith("/")) {
+      result = result.substring(1)
+    }
+    result = result.replace("/", "_")
+    result.replace(".", "_")
+  }
+
   def surefireDump(child: YUITest, report: YUIReport) = {
-    val htmlFile: File = child.getFile
+    val url: URL = child.getUrl
     val dir: File = new File("target/surefire-reports/")
     if (!dir.exists && !dir.mkdirs) {
       println("Couldn't create to " + dir.getAbsolutePath)
     } else {
       val content: String = report.results
-      val file: File = new File(dir, "TEST-" + child.getClass.getName + "-" + htmlFile.getName.replace(".", "_") + ".xml")
+      val file: File = new File(dir, "TEST-" + child.getClass.getName + "-" + getSimpleName(url) + ".xml")
       saveContentToFile(file, content)
     }
   }
@@ -110,26 +105,28 @@ class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest
     result
   }
 
-  def instantiateTest(testClass : Class[YUITest], file: File) : YUITest = {
-    val constructor : Constructor[YUITest] = testClass.getConstructor(file.getClass)
-    constructor.newInstance(file)
+  def instantiateTest(testClass : Class[YUITest], url: URL) : YUITest = {
+    val constructor : Constructor[YUITest] = testClass.getConstructor(url.getClass)
+    constructor.newInstance(url)
   }
 
   def getChildren : java.util.List[YUITest] = {
-    files.map(file => instantiateTest(testClass, file)).toList
+    val urlsFromAnnotation: java.lang.annotation.Annotation = testClass.getAnnotation(classOf[URLsFrom])
+    if (urlsFromAnnotation == null) {
+      throw new IllegalStateException("missing @URLsFrom annotation ")
+    }
+    val urlLister : URLsLister = urlsFromAnnotation.asInstanceOf[URLsFrom].value.newInstance
+    urlLister.getURLs.map(url => instantiateTest(testClass, url)).toList
   }
 
   def describeChild(child: YUITest) : Description = {
-    Description.createTestDescription(testClass, child.getFile.getName)
+    Description.createTestDescription(testClass, getSimpleName(child.getUrl))
   }
 
   def runYUITest(test: YUITest) : YUIReports = {
-    val file: File = test.getFile
+    val url : URL = test.getUrl
     var driver: WebDriver = test.getDriver
 
-    var url : URL = pageToUrl(test, file)
-    println("path: " + file.getAbsoluteFile)
-    println("page: " + url)
     // if reports aren't empty here, we have a problem. We should at least warn
     YUIReportCollector.clear
     driver.get(url.toString)
