@@ -6,10 +6,11 @@ import org.junit.runner.RunWith
 import java.io.File
 import scala.collection.JavaConversions._
 
-import org.openqa.selenium.htmlunit.HtmlUnitDriver
 
 import utils.JettyUtils
+import com.gargoylesoftware.htmlunit.BrowserVersion
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.htmlunit.HtmlUnitDriver
 import java.net.URL
 import org.apache.commons.io.filefilter.FileFilterUtils
 import org.apache.commons.io.FileUtils
@@ -77,12 +78,10 @@ object ResourcesManager {
   ResourcesManager.initResources
 
   def createDriver : WebDriver = {
-    new FirefoxDriver() // FIXME
-    /*
-    val driver : HtmlUnitDriver = new HtmlUnitDriver;
+    // new FirefoxDriver()
+    val driver : HtmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_3_6);
     driver.setJavascriptEnabled(true)
     driver
-    */
   }
 
   def webUrlRoot: String = {
