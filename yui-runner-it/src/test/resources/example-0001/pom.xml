@@ -6,7 +6,7 @@
     <groupId>org.coffeebreaks.yui</groupId>
     <artifactId>yui-parent</artifactId>
     <version>0.3-SNAPSHOT</version>
-    <relativePath>../../../../pom.xml</relativePath>
+    <relativePath>../../../../../pom.xml</relativePath>
   </parent>
   <artifactId>yui-runner-example-0001</artifactId>
   <name>YUI Runner :: Runner Example 0001</name>
