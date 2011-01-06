@@ -1,0 +1,7 @@
+Project's integration tests
+
+Note that
+* the IT are under src/test/resources
+* they are ran by using tests (with maven-verifier) or ran on the command line
+* when running in integration tests, logs are under 
+  target/test-classes/example-0001/log.txt
