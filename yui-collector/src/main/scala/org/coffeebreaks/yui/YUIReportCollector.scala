@@ -47,6 +47,7 @@ class YUIReportCollector extends HttpServlet {
   }
 }
 
+// class not multi-thread safe yet
 class YUIReports {
   var reports: List[YUIReport] = Nil
   def addYUIReport(report: YUIReport) = {
