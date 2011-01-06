@@ -66,23 +66,15 @@ class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest
     }
   }
 
-  def getSimpleName(url: URL) : String = {
-    var result = url.getPath
-    if (result.startsWith("/")) {
-      result = result.substring(1)
-    }
-    result = result.replace("/", "_")
-    result.replace(".", "_")
-  }
-
   def surefireDump(child: YUITest, report: YUIReport) = {
-    val url: URL = child.getUrl
     val dir: File = new File("target/surefire-reports/")
     if (!dir.exists && !dir.mkdirs) {
-      println("Couldn't create to " + dir.getAbsolutePath)
+      println("Couldn't create to " + dir.getAbsolutePath + " - file not saved!")
     } else {
+      val url: URL = child.getUrl
+      val file: File = new File(dir, YUIJunitTestRunner.getSurefireFileName(child))
+
       val content: String = report.results
-      val file: File = new File(dir, "TEST-" + child.getClass.getName + "-" + getSimpleName(url) + ".xml")
       saveContentToFile(file, content)
     }
   }
@@ -120,7 +112,7 @@ class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest
   }
 
   def describeChild(child: YUITest) : Description = {
-    Description.createTestDescription(testClass, getSimpleName(child.getUrl))
+    Description.createTestDescription(testClass, YUIJunitTestRunner.getSimpleName(child.getUrl))
   }
 
   def runYUITest(test: YUITest) : YUIReports = {
@@ -158,5 +150,19 @@ class YUIJunitTestRunner(testClass: Class[YUITest]) extends ParentRunner[YUITest
         println("ERROR: Results aren't yet published after " + timeInSeconds + " seconds")
       }
     }
+  }
+}
+
+object YUIJunitTestRunner {
+  def getSurefireFileName(child: YUITest) : String = {
+    "TEST-" + child.getClass.getName + "-" + getSimpleName(child.getUrl).replace(".", "_")  + ".xml"
+  }
+
+  def getSimpleName(url: URL) : String = {
+    var result = url.getPath
+    if (result.startsWith("/")) {
+      result = result.substring(1)
+    }
+    result.replace("/", "_")
   }
 }
