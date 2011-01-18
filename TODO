@@ -1,11 +1,11 @@
-* move the example as an integration-test with maven so that failing the junit tests because the expectation and doesn't fail the build
+X move the example as an integration-test with maven so that failing the junit tests because the expectation and doesn't fail the build
+X change the API so that a Test is mapped to a URL not a File (see change-api-use-URLs branch)
+X support HtmlUnit in default example
 * add more unit tests
 * use proper logging - find a way to collect console logs as well !
 * consider rewriting the collector code in Java to remove the dependence upon scala ? might be better for reuse. For tests we still consider a dependency on scala acceptable
-* change the API so that a Test is mapped to a URL not a File (see change-api-use-URLs branch)
 * allow people to disable / enable listeners on the collector and on the runner
 * show how to run multi browser tests
-* support HtmlUnit in default example
 * verify if surefire-reports saving integration works as expected
 * make code multi-threaded (reports collector)
 * fix reporting
