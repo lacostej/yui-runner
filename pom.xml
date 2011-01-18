@@ -11,7 +11,7 @@
   <groupId>org.coffeebreaks.yui</groupId>
   <artifactId>yui-parent</artifactId>
   <packaging>pom</packaging>
-  <version>0.3-SNAPSHOT</version>
+  <version>0.3</version>
   <name>YUI Runner Parent</name>
   <inceptionYear>2010</inceptionYear>
 
